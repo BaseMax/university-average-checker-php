@@ -1,1 +1,1 @@
-# university-average-checker-py
+# university-average-checker-php
