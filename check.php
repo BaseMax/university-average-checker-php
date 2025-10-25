@@ -25,7 +25,8 @@ function calc_semester_average($semester)
 
     foreach ($semester['courses'] as $course) {
         // if (isset($course["math"]) && $course["math"]) continue;
-        if (isset($course["computer"]) && $course["computer"]) continue;
+        if (isset($course["math2"]) && $course["math2"]) {}
+        else if (isset($course["computer"]) && $course["computer"]) continue;
         
         $total_weighted += $course['grade'] * $course['units'];
         $total_units += $course['units'];
