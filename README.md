@@ -41,20 +41,6 @@ Run the checker script from the command line:
 php check.php
 ```
 
-You will see output like:
-
-```
-📘 Semester-wise report:
-
-1398-1397 - ترم اول:
-  Calculated = 20.00 | Units = 15 | Stored term_avg = 20.00
-  ✅ Semester average matches stored value
-  🔹 Temporary cumulative average after this semester = 20.00
-
-📊 Final cumulative average = 20.00
-✅ Cumulative average matches stored value
-```
-
 ---
 
 ## Configuration Example
@@ -63,14 +49,14 @@ You will see output like:
 <?php
 $transcript = [
     [
-        "year" => "1398-1397",
-        "semester" => "اول",
+        "year" => "2018-2019",
+        "semester" => "First",
         "courses" => [
-            ["code" => "93107", "name" => "فارسی عمومی", "units" => 3, "grade" => 20.00],
-            ["code" => "93125", "name" => "اخلاق اسلامی (مبانی و مفاهیم)", "units" => 2, "grade" => 20.00],
-            ["code" => "110100", "name" => "ریاضی مقدماتی", "units" => 4, "grade" => 20.00],
-            ["code" => "110221", "name" => "مبانی ریاضی", "units" => 3, "grade" => 20.00],
-            ["code" => "111702", "name" => "مبانی ترکیبیات", "units" => 3, "grade" => 20.00],
+            ["code" => "93107", "name" => "General Persian", "units" => 3, "grade" => 20.00],
+            ["code" => "93125", "name" => "Islamic Ethics (Principles and Concepts)", "units" => 2, "grade" => 20.00],
+            ["code" => "110100", "name" => "Introductory Mathematics", "units" => 4, "grade" => 20.00],
+            ["code" => "110221", "name" => "Foundations of Mathematics", "units" => 3, "grade" => 20.00],
+            ["code" => "111702", "name" => "Foundations of Combinatorics", "units" => 3, "grade" => 20.00],
         ],
         "term_units_taken" => 15,
         "term_units_passed" => 15,
