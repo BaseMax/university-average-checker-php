@@ -38,36 +38,36 @@ function calc_semester_average($semester)
 
 function print_results($transcript)
 {
-    echo "📘 گزارش معدل‌ها و اعتبارسنجی مرحله‌به‌مرحله:\n\n";
+    echo "📘 Semester-wise Report and Validation:\n\n";
 
     $cumulative_weighted = 0;
     $cumulative_units = 0;
 
     foreach ($transcript as $sem) {
         if (is_withdrawn_semester($sem)) {
-            echo "{$sem['year']} - ترم {$sem['semester']}: ⚠️ ترم حذف شده، نادیده گرفته شد\n\n";
+            echo "{$sem['year']} - Semester {$sem['semester']}: ⚠️ Withdrawn semester, skipped\n\n";
             continue;
         }
 
         list($avg, $units) = calc_semester_average($sem);
-        echo "{$sem['year']} - ترم {$sem['semester']}:\n";
-        echo "  محاسبه شده = " . round($avg, 2) . " | واحد = $units | term_avg موجود = {$sem['term_avg']}\n";
+        echo "{$sem['year']} - Semester {$sem['semester']}:\n";
+        echo "  Calculated = " . round($avg, 2) . " | Units = $units | Stored term_avg = {$sem['term_avg']}\n";
 
         if (abs($avg - $sem['term_avg']) > 0.001) {
-            echo "  ⚠️ خطا: معدل ترم محاسبه شده با مقدار ذخیره شده مطابقت ندارد!\n";
+            echo "  ⚠️ Error: Calculated semester average does not match stored value!\n";
         } else {
-            echo "  ✅ تطابق معدل ترم با داده ذخیره شده.\n";
+            echo "  ✅ Semester average matches stored data.\n";
         }
 
         $cumulative_weighted += $avg * $units;
         $cumulative_units += $units;
         $cumulative_avg = ($cumulative_units > 0) ? $cumulative_weighted / $cumulative_units : 0;
 
-        echo "  🔹 معدل کل موقت پس از این ترم = " . round($cumulative_avg, 2) . "\n\n";
+        echo "  🔹 Temporary cumulative average after this semester = " . round($cumulative_avg, 2) . "\n\n";
     }
 
     $final_avg = ($cumulative_units > 0) ? $cumulative_weighted / $cumulative_units : 0;
-    echo "📊 معدل کل نهایی محاسبه شده = " . round($final_avg, 2) . "\n";
+    echo "📊 Final cumulative average = " . round($final_avg, 2) . "\n";
 
     $non_withdrawn = array_filter($transcript, fn($s) => !is_withdrawn_semester($s));
     if (!empty($non_withdrawn)) {
@@ -75,9 +75,9 @@ function print_results($transcript)
         $last_total_avg = $last['total_avg'];
 
         if (abs($final_avg - $last_total_avg) > 0.001) {
-            echo "⚠️ خطا: معدل کل محاسبه شده با مقدار ذخیره شده مطابقت ندارد!\n";
+            echo "⚠️ Error: Final cumulative average does not match stored value!\n";
         } else {
-            echo "✅ معدل کل مطابقت دارد.\n";
+            echo "✅ Cumulative average matches stored data.\n";
         }
     }
 }
