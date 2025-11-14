@@ -4,7 +4,7 @@
 // Compare calculated semester averages with term_avg in transcript.
 // Skip semesters where all course grades are zero (withdrawn semesters).
 // Update and print cumulative total average after each semester.
-// Author: Max Base
+// Author: https://github.com/BaseMax/university-average-checker-php
 
 require_once __DIR__ . '/config.php';
 
@@ -24,10 +24,6 @@ function calc_semester_average($semester)
     $total_units = 0;
 
     foreach ($semester['courses'] as $course) {
-        // if (isset($course["math"]) && $course["math"]) continue;
-        if (isset($course["math2"]) && $course["math2"]) {}
-        else if (isset($course["computer"]) && $course["computer"]) continue;
-        
         $total_weighted += $course['grade'] * $course['units'];
         $total_units += $course['units'];
     }
